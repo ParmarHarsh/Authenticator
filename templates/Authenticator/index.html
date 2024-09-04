@@ -1,0 +1,86 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Authenticator</title>
+        <link rel="stylesheet" href="{% static 'Authenticator/style.css' %}">
+        <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    </head>
+    <body>
+        <header class="header">
+            <nav class="navigationbar">
+                <a href="">HP</a>
+            </nav>
+        </header>
+
+        <div class="background"></div>
+
+        <div class="container">
+            <div class="content">
+                <h2 class="logo"><i class='bx bxs-layer' ></i>   Welcome to Desk AI</h2>
+
+                <div class="text">
+                    <h3>Enhance Your Productivity With A Virtual Assistant.</h3>
+                    {% if user.is_authenticated %}
+                    <p>
+
+                    </p>
+                    {% else %}
+                    <p>
+                        To get started, please register or login to your account if you already have one.
+                    </p>
+                    {% endif %}
+
+                    <div class="social">
+                        <a href="https://www.linkedin.com/in/711-parmar-harsh/" target="_blank"><i class='bx bxl-linkedin' ></i></a>
+                        <a href="https://www.instagram.com/harshp_711/" target="_blank"><i class='bx bxl-instagram' ></i></a>
+                        <a href="https://github.com/ParmarHarsh" target="_blank"><i class='bx bxl-github'></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="box">
+
+                {% for message in messages %}
+                <div class="alert alert-{{ message.tags }}" role="alert" style="text-align: center;">
+                    <strong>Message:</strong> 
+                    <br>{{ message }}
+                </div>                
+                {% endfor %}
+                
+                {% if user.is_authenticated %}
+                    <h3>Welcome {{ fname }}.</h3>
+                    <h4>You Have Successfully Logged-In!</h4>
+                    <div class="form logout">
+                        <button type="submit" class="subbtn">
+                            <a href="/logout_user">
+                                Log-Out
+                            </a>
+                        </button>
+                    </div>
+
+                {% else %}
+                    <div class="form">
+                        <div class="button-container">
+                            <button type="submit" class="subbtn">
+                                <a href="/register_user">
+                                    Register
+                                </a>
+                            </button>
+                            
+                            <button type="submit" class="subbtn">
+                                <a href="/login_user">
+                                    Log-In
+                                </a>
+                            </button>
+                        </div>
+                    </div>
+                {% endif %}
+                
+            </div>
+        </div>
+        <script src="{% static 'Authenticator/script.js' %}"></script>
+    </body>
+</html>

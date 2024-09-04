@@ -1,0 +1,85 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Authenticator</title>
+        <link rel="stylesheet" href="{% static 'Authenticator/style.css' %}">
+        <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    </head>
+    <body>
+        <header class="header">
+            <nav class="navigationbar">
+                <a href="">HP</a>
+            </nav>
+        </header>
+
+        <div class="background"></div>
+
+        <div class="container">
+            <div class="content">
+                <h2 class="logo"><i class='bx bxs-layer' ></i>   Register To Desk AI!</h2>
+                <div class="text">
+                    <h3>Enter Your Details To Use The Virtual Assistant.</h3>
+                    <p>
+                        Our secure authentication process ensures that your information is protected while you enjoy seamless interaction with your AI assistant.
+                    </p>
+                </div>
+            </div>
+            <div class="box">
+
+                {% for message in messages %}
+                <div class="alert alert-{{ message.tags }}" role="alert" style="text-align: center;">
+                    <strong>Message:</strong> 
+                    <br>{{ message }}
+                </div>                
+                {% endfor %}
+
+                <div class="form register">
+                    <form action="/register_user" method="POST">
+                    {% csrf_token %}
+                        <h2>Sign-Up!</h2>
+                        <br>
+
+                        <div class="input">
+                            <input type="text" id="username" name="username" required>
+                            <label>Username</label>
+                        </div>
+
+                        <div class="input">
+                            <input type="text" id="fname" name="fname" required>
+                            <label>First Name</label>
+                        </div>
+
+                        <div class="input">
+                            <input type="text" id="lname" name="lname" required>
+                            <label>Last Name</label>
+                        </div>
+
+                        <div class="input">
+                            <input type="email" id="email" name="email" required>
+                            <label>Email</label>
+                        </div>
+
+                        <div class="input">
+                            <input type="password" id="pass1" name="pass1" required>
+                            <label>Password</label>
+                        </div>
+
+                        <div class="input">
+                            <input type="password" id="pass2" name="pass2" required>
+                            <label>Confirm Passsword</label>
+                        </div>
+
+                        <button type="submit" class="subbtn">
+                            Submit
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <script src="{% static 'Authenticator/script.js' %}"></script>
+    </body>
+</html>
