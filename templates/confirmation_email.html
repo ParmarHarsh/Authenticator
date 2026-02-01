@@ -1,0 +1,14 @@
+{% autoescape off %}
+
+Welcome to Desk AI!
+
+Hello {{ name }}.
+
+Please activate your account by clicking on the link below.
+
+Confirmation Link: http://{{ domain }}{% url 'activate' uidb64=uid token=token %}
+
+Thank you,
+Desk AI Team
+
+{% endautoescape %}
